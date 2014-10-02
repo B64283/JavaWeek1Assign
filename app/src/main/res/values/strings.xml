@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">JavaWeek1</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Type Anything to add to a list!</string>
     <string name="action_settings">Settings</string>
+    <string name="Add_Entry">Add Entry</string>
+    <string name="NewText">New Text</string>
 
 </resources>

@@ -1,6 +1,9 @@
-//Matthew Darke
-//Java1
-//term 1410
+/*
+Matthew Darke
+Java1
+term 1410
+10/01/14
+*/
 package com.example.matthewdarke.javaweek1;
 
 import android.app.Activity;
@@ -31,9 +34,6 @@ public class MyActivity1 extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 }
