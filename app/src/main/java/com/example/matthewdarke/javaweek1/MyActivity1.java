@@ -1,25 +1,86 @@
 /*
-Matthew Darke
-Java1
-term 1410
-10/01/14
+
+* Matthew Darke
+* Java1
+* term 1410
+* 10/01/14
+
 */
 package com.example.matthewdarke.javaweek1;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MyActivity1 extends Activity {
+
+    //set Member Variables
+    EditText textView2, editText, editText2;
+    ListView entryList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_activity1);
-    }
 
+    textView2 = (EditText) findViewById(R.id.textView2);
+
+
+      final Button addBTn = (Button)findViewById(R.id.buttonsub);
+        addBTn.setOnClickListener(new View.OnClickListener() {
+
+//onclick event
+    @Override
+    public void onClick(View view) {
+
+  //add more stuff
+    Toast.makeText(getApplicationContext(),"It can hear the click!", Toast.LENGTH_SHORT).show();
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    textView2.addTextChangedListener(new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    });
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

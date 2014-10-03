@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="Add_Entry">Add Entry</string>
     <string name="NewText">New Text</string>
-
+    <string name="average_num">Average length of entries</string>
+    <string name="number_entries">Number of entries</string>
 </resources>
