@@ -8,31 +8,33 @@
 */
 package com.example.matthewdarke.javaweek1;
 
-        import android.app.Activity;
-        import android.os.Bundle;
-        //import android.text.Editable;
-        //import android.text.TextWatcher;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
+import android.app.Activity;
+import android.os.Bundle;
+//import android.text.Editable;
+//import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.ListView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
-        import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 
 public class MyActivity1 extends Activity {
 
     //set Member Variables
-  public EditText textView2, itemsEntered, AveNumItems;
-  public ListView entryList;
-  public String entryString;
-  public HashSet<String> userString = new HashSet<String>();
+    public EditText textView2, itemsEntered, AveNumItems;
+    public ListView entryList;
+    public String entryString;
+    public HashSet<String> userString = new HashSet<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,8 @@ public class MyActivity1 extends Activity {
                 textView2 = (EditText) findViewById(R.id.textView2);
                 entryString = textView2.getText().toString();
 
-             //call addto method
-             //addToListView();
+                //call addto method
+               //addToListView();
 
                 if (userString.contains(textView2.getText().toString())) {
 
@@ -63,28 +65,30 @@ public class MyActivity1 extends Activity {
 
                 } else if (!entryString.equals("")) {
 
-
+                 //adds userString into HashSet
                     userString.add(entryString);
 
-                } else
+                } else {
 
-                    Toast.makeText(getApplicationContext(), "Please enter some text", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please enter some text", Toast.LENGTH_SHORT).show();
 
+
+                }
+//call to method for adding entry to the listView
+                addToListView();
 
             }
-                     TextView itemsEntered = (TextView)findViewById(R.id.itemsEntered);
+                TextView itemsEntered = (TextView)findViewById(R.id.itemsEntered);
 
-            //call to method for adding entry to the listView
-            //
-            // addToListView();
+
 
 
 
 
         });
 
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,14 +108,18 @@ public class MyActivity1 extends Activity {
 
 
 //set up method
-   // private void addToListView() {
+     private void addToListView() {
+
+         // Constructing the data source
+         ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
+    // Create the adapter to convert the array to views
+         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayOfUsers);
+//Attach the adapter to a ListView
+         ListView listView = (ListView) findViewById(R.id.entryList);
+         listView.setAdapter(adapter);
 
 
-
-
-
-
- // }
+     }
 
 
 //set up averageText method
