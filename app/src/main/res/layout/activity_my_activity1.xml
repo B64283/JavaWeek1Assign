@@ -37,13 +37,14 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/buttonsub"
         android:layout_marginBottom="85dp"
-        android:hint="edtText"
-        android:inputType="text" />
+        android:hint="Enter Text"
+        android:inputType="text"
+        android:editable="false" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/itemsEntered"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
@@ -54,14 +55,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/AveNumItems"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:text="@string/average_num"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:hint="AveLength" />
+        android:layout_alignParentEnd="true" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -71,6 +71,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="51dp"
-        android:layout_below="@+id/editText2" />
+        android:layout_below="@+id/AveNumItems" />
 
 </RelativeLayout>

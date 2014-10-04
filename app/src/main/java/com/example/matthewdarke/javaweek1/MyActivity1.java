@@ -8,77 +8,81 @@
 */
 package com.example.matthewdarke.javaweek1;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
+        import android.app.Activity;
+        import android.os.Bundle;
+        //import android.text.Editable;
+        //import android.text.TextWatcher;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.View;
+
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.ListView;
+        import android.widget.TextView;
+        import android.widget.Toast;
+
+
+        import java.util.HashSet;
 
 
 public class MyActivity1 extends Activity {
 
     //set Member Variables
-    EditText textView2, editText, editText2;
-    ListView entryList;
-
-
+  public EditText textView2, itemsEntered, AveNumItems;
+  public ListView entryList;
+  public String entryString;
+  public HashSet<String> userString = new HashSet<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_activity1);
 
-    textView2 = (EditText) findViewById(R.id.textView2);
+        textView2 = (EditText) findViewById(R.id.textView2);
 
 
-      final Button addBTn = (Button)findViewById(R.id.buttonsub);
+        final Button addBTn = (Button) findViewById(R.id.buttonsub);
         addBTn.setOnClickListener(new View.OnClickListener() {
 
-//onclick event
-    @Override
-    public void onClick(View view) {
+            //onclick event
+            @Override
+            public void onClick(View view) {
 
-  //add more stuff
-    Toast.makeText(getApplicationContext(),"It can hear the click!", Toast.LENGTH_SHORT).show();
-    }
-});
+                //add more stuff
+                entryList = (ListView) findViewById(R.id.entryList);
+                textView2 = (EditText) findViewById(R.id.textView2);
+                entryString = textView2.getText().toString();
 
+             //call addto method
+             //addToListView();
 
+                if (userString.contains(textView2.getText().toString())) {
 
+                    Toast.makeText(getApplicationContext(), "You have entered a previous entry please enter somthing else!", Toast.LENGTH_LONG).show();
 
-
-
-
-
-
-
-
+                } else if (!entryString.equals("")) {
 
 
+                    userString.add(entryString);
 
-    textView2.addTextChangedListener(new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                } else
 
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                    Toast.makeText(getApplicationContext(), "Please enter some text", Toast.LENGTH_LONG).show();
 
 
-        }
+            }
+                     TextView itemsEntered = (TextView)findViewById(R.id.itemsEntered);
 
-        @Override
-        public void afterTextChanged(Editable editable) {
+            //call to method for adding entry to the listView
+            //
+            // addToListView();
 
-        }
-    });
+
+
+
+        });
+
 
     }
 
@@ -97,4 +101,26 @@ public class MyActivity1 extends Activity {
         int id = item.getItemId();
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
+
+
+//set up method
+   // private void addToListView() {
+
+
+
+
+
+
+ // }
+
+
+//set up averageText method
+//private aveText() {
+
+//}
+
+
+
+
+
 }
