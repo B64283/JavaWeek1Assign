@@ -22,8 +22,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -77,6 +75,8 @@ public class MyActivity1 extends Activity {
 //call to method for adding entry to the listView
                 addToListView();
 
+              //reset TextView
+                textView2.setText("");
             }
                 TextView itemsEntered = (TextView)findViewById(R.id.itemsEntered);
 
