@@ -1,10 +1,12 @@
 /*
-
+* ************************
+*
 * Matthew Darke
 * Java1
 * term 1410
 * 10/01/14
-
+*
+*************************
 */
 package com.example.matthewdarke.javaweek1;
 
@@ -15,7 +17,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +36,7 @@ public class MyActivity1 extends Activity {
     public String entryString;
     public HashSet<String> userString = new HashSet<String>();
 
+    //wondering if I could use an ordered set???
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +58,17 @@ public class MyActivity1 extends Activity {
                 entryString = textView2.getText().toString();
 
                 //call addto method
-               //addToListView();
+                //addToListView();
 
+                //checks to see if the list already CONTAINS whats in the edit feild
                 if (userString.contains(textView2.getText().toString())) {
 
                     Toast.makeText(getApplicationContext(), "You have entered a previous entry please enter somthing else!", Toast.LENGTH_LONG).show();
 
+                //if not emty then add to Hashset for the listview list
                 } else if (!entryString.equals("")) {
 
-                 //adds userString into HashSet
+                    //adds userString into HashSet
                     userString.add(entryString);
 
                 } else {
@@ -72,18 +77,22 @@ public class MyActivity1 extends Activity {
 
 
                 }
-//call to method for adding entry to the listView
+
+                //gets total entries int in set and puts it to a string and sets it to the textView
+                TextView itemsEntered = (TextView) findViewById(R.id.itemsEntered);
+                int numOfEntries = userString.size();
+                String entrySize = String.valueOf(numOfEntries);
+                itemsEntered.setText("Number of entries : " + entrySize);
+
+
+                //call to method for adding entry to the listView
+                //
+                aveTextLength();
                 addToListView();
 
-              //reset TextView
+                //reset TextView
                 textView2.setText("");
             }
-                TextView itemsEntered = (TextView)findViewById(R.id.itemsEntered);
-
-
-
-
-
 
         });
 
@@ -107,25 +116,66 @@ public class MyActivity1 extends Activity {
     }
 
 
-//set up method
-     private void addToListView() {
+    //set up method
+    private void addToListView() {
 
-         // Constructing the data source
-         ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
-    // Create the adapter to convert the array to views
-         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayOfUsers);
+// Constructing the data source
+        ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
+
+// Create the adapter to convert the array to views
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayOfUsers);
+
 //Attach the adapter to a ListView
-         ListView listView = (ListView) findViewById(R.id.entryList);
-         listView.setAdapter(adapter);
+        ListView listView = (ListView) findViewById(R.id.entryList);
+        listView.setAdapter(adapter);
 
 
-     }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewItemClicked, int position, long id) {
 
 
-//set up averageText method
-//private aveText() {
+                 TextView textView = (TextView)viewItemClicked;
+                String message = "You clicked on position"+ position + "which is "+ entryList.getItemAtPosition(position);
 
-//}
+                //add alert for user
+                Toast.makeText(MyActivity1.this, message, Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+
+    }
+
+
+
+
+    //set up averageText method
+    private void aveTextLength() {
+
+        float size=0;
+
+        //create for loop through every element in array
+        for (int i=0; i<userString.size(); i++) {
+            String currentEntries = String.valueOf(userString);
+            size+= currentEntries.length();
+
+            size = size / userString.size();
+        }
+
+
+
+
+
+        TextView AveNumItems = (TextView) findViewById(R.id.AveNumItems);
+
+        AveNumItems.setText(" Average length in each entry : " + size);
+
+    }
+
+
+
 
 
 
