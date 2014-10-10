@@ -12,6 +12,7 @@ package com.example.matthewdarke.javaweek1;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 //import android.text.Editable;
@@ -40,7 +41,8 @@ public class MyActivity1 extends Activity {
     public HashSet<String> userString = new HashSet<String>();
     public ListView listView;
     public ArrayAdapter adapter;
-
+    final Context contThis = (this);
+    public AlertDialog.Builder alertDialog;
 
     //wondering if I could use an ordered set???
     @Override
@@ -126,7 +128,7 @@ public class MyActivity1 extends Activity {
     private void addToListView() {
 
 // Constructing the data source
-        ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
+        final ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
 
 // Create the adapter to convert the array to views
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayOfUsers);
@@ -134,11 +136,11 @@ public class MyActivity1 extends Activity {
 //Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.entryList);
         listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewItemClicked, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, final View viewItemClicked, final int position, long id) {
 
 
                 TextView textView = (TextView)viewItemClicked;
@@ -147,14 +149,55 @@ public class MyActivity1 extends Activity {
                 //add alert for user
                 Toast.makeText(MyActivity1.this, message, Toast.LENGTH_LONG).show();
 
-showAlertDialog();
+// add alert
+                alertDialog = new AlertDialog.Builder(contThis);
+                alertDialog.setTitle(message);
+                alertDialog.setMessage("Click Remove to delete. Click OK to cancel.");
+
+                alertDialog.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+                    //adapter.remove(adapter);
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        ListView listView = (ListView) findViewById(R.id.entryList);
+
+                      userString.remove(position);
+
+
+
+
+
+
+                        Toast.makeText(getApplicationContext(), "You have pressed yes!", Toast.LENGTH_SHORT).show();
+
+
+                    }
+
+
+                });
+
+                alertDialog.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "You have pressed no", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                });
+
+                alertDialog.show();
+
+
+
             }
         });
 
 
     }
 
-    public void showAlertDialog() {
+    /*public void showAlertDialog() {
 
 
         AlertDialog.Builder  alertDialog = new AlertDialog.Builder(this);
@@ -197,7 +240,7 @@ showAlertDialog();
 
         alertDialog.show();
 
-    }
+    }*/
 
 
             //set up averageText method
