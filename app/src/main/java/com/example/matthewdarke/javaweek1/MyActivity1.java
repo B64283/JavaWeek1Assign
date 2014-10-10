@@ -2,18 +2,21 @@
 * ************************
 *
 * Matthew Darke
-* Java1
+* Java1 week 2
 * term 1410
-* 10/01/14
+מַתִּתְיָהוּ
 *
 *************************
 */
 package com.example.matthewdarke.javaweek1;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 //import android.text.Editable;
 //import android.text.TextWatcher;
+import android.preference.DialogPreference;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +38,9 @@ public class MyActivity1 extends Activity {
     public ListView entryList;
     public String entryString;
     public HashSet<String> userString = new HashSet<String>();
+    public ListView listView;
+    public ArrayAdapter adapter;
+
 
     //wondering if I could use an ordered set???
     @Override
@@ -63,7 +69,7 @@ public class MyActivity1 extends Activity {
                 //checks to see if the list already CONTAINS whats in the edit feild
                 if (userString.contains(textView2.getText().toString())) {
 
-                    Toast.makeText(getApplicationContext(), "You have entered a previous entry please enter somthing else!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.same_text, Toast.LENGTH_LONG).show();
 
                 //if not emty then add to Hashset for the listview list
                 } else if (!entryString.equals("")) {
@@ -73,7 +79,7 @@ public class MyActivity1 extends Activity {
 
                 } else {
 
-                    Toast.makeText(getApplicationContext(), "Please enter some text", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.some_text, Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -82,7 +88,7 @@ public class MyActivity1 extends Activity {
                 TextView itemsEntered = (TextView) findViewById(R.id.itemsEntered);
                 int numOfEntries = userString.size();
                 String entrySize = String.valueOf(numOfEntries);
-                itemsEntered.setText("Number of entries : " + entrySize);
+                itemsEntered.setText( entrySize);
 
 
                 //call to method for adding entry to the listView
@@ -128,57 +134,92 @@ public class MyActivity1 extends Activity {
 //Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.entryList);
         listView.setAdapter(adapter);
-
+        adapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewItemClicked, int position, long id) {
 
 
-                 TextView textView = (TextView)viewItemClicked;
+                TextView textView = (TextView)viewItemClicked;
                 String message = "You clicked on position"+ position + "which is "+ entryList.getItemAtPosition(position);
 
                 //add alert for user
                 Toast.makeText(MyActivity1.this, message, Toast.LENGTH_LONG).show();
 
-
+showAlertDialog();
             }
         });
 
 
     }
 
+    public void showAlertDialog() {
 
 
+        AlertDialog.Builder  alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Confirm");
+        alertDialog.setMessage("Click Remove to delete. Click OK to cancel.");
 
-    //set up averageText method
-    private void aveTextLength() {
+        alertDialog.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+            //adapter.remove(adapter);
 
-        float size=0;
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-        //create for loop through every element in array
-        for (int i=0; i<userString.size(); i++) {
-            String currentEntries = String.valueOf(userString);
-            size+= currentEntries.length();
-
-            size = size / userString.size();
-        }
+                //ListView listView = (ListView) findViewById(R.id.entryList);
 
 
+                adapter.remove(adapter);
+
+                //removeItem(userString);
+
+               listView.setAdapter(adapter);
+                //adapter.remove(adapter);
+
+                Toast.makeText(getApplicationContext(), "You have pressed yes!", Toast.LENGTH_SHORT).show();
 
 
+            }
 
-        TextView AveNumItems = (TextView) findViewById(R.id.AveNumItems);
 
-        AveNumItems.setText(" Average length in each entry : " + size);
+        });
+
+        alertDialog.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "You have pressed no", Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+        alertDialog.show();
 
     }
 
 
+            //set up averageText method
+            private void aveTextLength() {
+
+                double size = 0;
+
+                //create for loop through every element in array
+                for (int i = 0; i < userString.size(); i++) {
+                    String currentEntries = String.valueOf(userString);
+                    size += currentEntries.length();
+
+                    size = size / userString.size();
+                }
+
+
+                TextView AveNumItems = (TextView) findViewById(R.id.AveNumItems);
+
+                AveNumItems.setText(": " + size);
+
+            }
 
 
 
-
-
-
-}
+        }

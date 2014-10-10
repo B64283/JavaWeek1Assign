@@ -37,7 +37,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/buttonsub"
         android:layout_marginBottom="85dp"
-        android:hint="Enter Text"
+        android:hint="@string/Enter_text"
         android:inputType="text"
         android:editable="false" />
 
@@ -45,21 +45,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/itemsEntered"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
-        android:text="@string/number_entries"
         android:layout_alignRight="@+id/buttonsub"
-        android:layout_alignEnd="@+id/buttonsub" />
+        android:layout_alignEnd="@+id/buttonsub"
+        android:layout_alignLeft="@+id/buttonsub"
+        android:layout_alignStart="@+id/buttonsub" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/AveNumItems"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="@string/average_num"
+        android:layout_toEndOf="@+id/NumEntries"
+        android:layout_below="@+id/itemsEntered"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -72,5 +69,25 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="51dp"
         android:layout_below="@+id/AveNumItems" />
+
+    <TextView
+        android:text="@string/NumEntries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NumEntries"
+        android:layout_toStartOf="@+id/itemsEntered"
+        android:layout_above="@+id/AveNumItems"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_toStartOf="@+id/itemsEntered"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/Average_length"
+        android:layout_above="@+id/entryList" />
 
 </RelativeLayout>

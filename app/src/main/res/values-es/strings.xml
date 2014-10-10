@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Just Tetsing</string>
+    <string name="hello_world">Escriba algo que añadir a una lista!</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="Add_Entry">Añadir entrada</string>
+    <string name="NewText">Nuevo texto</string>
+    <string name="average_num">Duración media de las entradas</string>
+    <string name="number_entries">Cantidad de entradas</string>
+    <string name="Average_length">La longitud media de cada entrada</string>
+    <string name="NumEntries">Cantidad de entradas</string>
+    <string name="Enter_text">Introduzca texto</string>
+    <string name="same_text">Ha introducido una entrada anterior por favor escribe somthing más!</string>
+    <string name="some_text">Por favor, introduzca algún texto</string>
+</resources>
