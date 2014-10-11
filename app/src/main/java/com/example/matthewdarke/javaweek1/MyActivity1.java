@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 
 public class MyActivity1 extends Activity {
@@ -43,6 +44,8 @@ public class MyActivity1 extends Activity {
     public ArrayAdapter adapter;
     final Context contThis = (this);
     public AlertDialog.Builder alertDialog;
+    private List<String> SetList;
+
 
     //wondering if I could use an ordered set???
     @Override
@@ -128,20 +131,20 @@ public class MyActivity1 extends Activity {
     private void addToListView() {
 
 // Constructing the data source
-        final ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
+        SetList = new ArrayList<String>(userString);
 
 // Create the adapter to convert the array to views
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayOfUsers);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, SetList);
 
 //Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.entryList);
+        listView = (ListView) findViewById(R.id.entryList);
         listView.setAdapter(adapter);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View viewItemClicked, final int position, long id) {
-
+                //entry.remove(userString);
 
                 TextView textView = (TextView)viewItemClicked;
                 String message = R.string.Clicked_on_position + position + "which is" +entryList.getItemAtPosition(position);
@@ -160,25 +163,22 @@ public class MyActivity1 extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                       entryList.getItemAtPosition(position);
+                       //entryList.getItemAtPosition(position);
 
 
                        //userString.remove(position);
 
-                        userString.remove(entryString);
-
-                        final ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
-
-//
-                        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(contThis, android.R.layout.simple_list_item_1, arrayOfUsers);
+                       final String itemValue = (String)listView.getItemAtPosition(position);
 
 
-                        ListView listView = (ListView) findViewById(R.id.entryList);
+                       listView = (ListView) findViewById(R.id.entryList);
 
+                        SetList.remove(position);
+                        userString.remove(itemValue);
 
-                        listView.setAdapter(adapter);
-
-
+                        //listView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                        addToListView();
 
                         Toast.makeText(getApplicationContext(), R.string.You_pressed_yes, Toast.LENGTH_SHORT).show();
 
