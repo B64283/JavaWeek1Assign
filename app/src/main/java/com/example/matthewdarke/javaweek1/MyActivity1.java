@@ -131,12 +131,12 @@ public class MyActivity1 extends Activity {
         final ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
 
 // Create the adapter to convert the array to views
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayOfUsers);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayOfUsers);
 
 //Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.entryList);
         listView.setAdapter(adapter);
-        //adapter.notifyDataSetChanged();
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -144,7 +144,7 @@ public class MyActivity1 extends Activity {
 
 
                 TextView textView = (TextView)viewItemClicked;
-                String message = "You clicked on position"+ position + "which is "+ entryList.getItemAtPosition(position);
+                String message = R.string.Clicked_on_position + position + "which is" +entryList.getItemAtPosition(position);
 
                 //add alert for user
                 Toast.makeText(MyActivity1.this, message, Toast.LENGTH_LONG).show();
@@ -152,24 +152,35 @@ public class MyActivity1 extends Activity {
 // add alert
                 alertDialog = new AlertDialog.Builder(contThis);
                 alertDialog.setTitle(message);
-                alertDialog.setMessage("Click Remove to delete. Click OK to cancel.");
+                alertDialog.setMessage(R.string.Click_remove);
 
-                alertDialog.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+                alertDialog.setPositiveButton(R.string.Remove, new DialogInterface.OnClickListener() {
                     //adapter.remove(adapter);
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                       entryList.getItemAtPosition(position);
+
+
+                       //userString.remove(position);
+
+                        userString.remove(entryString);
+
+                        final ArrayList<String> arrayOfUsers = new ArrayList<String>(userString);
+
+//
+                        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(contThis, android.R.layout.simple_list_item_1, arrayOfUsers);
+
+
                         ListView listView = (ListView) findViewById(R.id.entryList);
 
-                      userString.remove(position);
+
+                        listView.setAdapter(adapter);
 
 
 
-
-
-
-                        Toast.makeText(getApplicationContext(), "You have pressed yes!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.You_pressed_yes, Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -177,11 +188,11 @@ public class MyActivity1 extends Activity {
 
                 });
 
-                alertDialog.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                alertDialog.setNegativeButton(R.string.Ok, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "You have pressed no", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.You_have_pressed_no, Toast.LENGTH_SHORT).show();
 
                     }
 

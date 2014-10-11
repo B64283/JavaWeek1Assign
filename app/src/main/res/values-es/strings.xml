@@ -13,4 +13,11 @@
     <string name="Enter_text">Introduzca texto</string>
     <string name="same_text">Ha introducido una entrada anterior por favor escribe somthing más!</string>
     <string name="some_text">Por favor, introduzca algún texto</string>
+    <string name="Clicked_on_position">Hizo clic en la posición</string>
+    <string name="Which_is">que es</string>
+    <string name="Click_remove">Haga clic en Quitar para eliminar. Haga clic en Aceptar para cancelar.</string>
+    <string name="Remove">Retire</string>
+    <string name="You_pressed_yes">Ha pulsado sí</string>
+    <string name="Ok">bueno</string>
+    <string name="You_have_pressed_no">Ha pulsado ninguna</string>
 </resources>

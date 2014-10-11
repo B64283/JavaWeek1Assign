@@ -13,4 +13,11 @@
     <string name="Enter_text">Enter Text</string>
     <string name="same_text">You have entered a previous entry please enter somthing else!</string>
     <string name="some_text">Please enter some text</string>
+    <string name="Clicked_on_position">You clicked on position</string>
+    <string name="Which_is">Which is</string>
+    <string name="Click_remove">Click Remove to delete. Click OK to cancel.</string>
+    <string name="Remove">Remove</string>
+    <string name="You_pressed_yes">You Pressed yes</string>
+    <string name="Ok">Ok</string>
+    <string name="You_have_pressed_no">You have pressed no</string>
 </resources>
